@@ -23,7 +23,24 @@ const createGallaryItems = galleryItems
 galleryItemsSelect.insertAdjacentHTML('beforeend', createGallaryItems );
 
 const lightbox = new SimpleLightbox( '.gallery a' , {
-    navText: ['prev','next'],
-    captionPosition : 'bottom'
+    // text sau html pentru săgețile de navigare
+    navText: ['←','→'],
+    // poziția legendei. Opțiunile sunt: sus, jos sau în afara (rețineți că exteriorul poate fi în afara razei de vizualizare vizibile!).
+    captionPosition : 'bottom',
+    overlay: true,
+    // opacitatea suprapunerii este de tip float
+    overlayOpacity : 0.9,
+    // cat dureaza animatia si este de tip int
+    animationSpeed : 350,
+    // mesajul afișat în cazul în care imaginea nu a fost găsită
+    alertErrorMessage: 'Image not found, next image will be loaded',
+    //  activează afișarea descrierilor
+    captions: true,
+    // specifică că atributul `alt` al elementului `<img>` va fi folosit pentru a furniza descrierea imaginii.
+    captionsData: 'alt'
+
 });
+
+
+
 console.log(lightbox);

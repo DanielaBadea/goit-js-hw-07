@@ -22,7 +22,26 @@ const createGallaryItems = galleryItems
     console.log(createGallaryItems);
 galleryItemsSelect.insertAdjacentHTML('beforeend', createGallaryItems );
 
-//  // Adăugăm un eveniment de click pe lista
+// const selectorElem = document.querySelector('.gallery')
+// galleryItems.forEach(elem => {
+//     const listElem = document.createElement('li')
+//     const linkItem = document.createElement('a')
+//     listElem.classList.add("gallery__item");
+//     linkItem.classList.add("gallery__link");
+//     linkItem.href = elem.original;
+//     const imgElem = document.createElement('img');
+//     imgElem.classList.add("gallery__image");
+//     imgElem.src = elem.preview;
+//     imgElem.dataset.src = elem.original;
+//     imgElem.alt = elem.description;
+//     linkItem.appendChild(imgElem);
+//     listElem.appendChild(linkItem);
+//     selectorElem.appendChild(listElem);
+    
+// } );
+
+
+ // Adăugăm un eveniment de click pe lista
 const handleClick = (e) => {
     e.preventDefault();
     console.log(e);
@@ -34,6 +53,29 @@ const handleClick = (e) => {
     `<img src= "${source}"> `)
     lightBoxModal.show();
 
+    const pressKey = (e) => {
+        e.preventDefault();
+        if(e.key === 'Escape'){
+          // Verificăm dacă fereastra modală este deschisă înainte de a o închide
+            if(lightBoxModal.visible()){
+                lightBoxModal.close();
+            // Ștergem evenimentul de apăsare a tastei Escape după închiderea ferestrei modale
+                document.removeEventListener('keydown' , pressKey);
+            }
+        }
+    };
+    galleryItemsSelect.addEventListener('keydown', pressKey);
 };
-galleryItemsSelect.addEventListener('click', handleClick);
+galleryItemsSelect.addEventListener('click', handleClick );
 
+// acest cod nu a functionat deoarece intervine GlobalScope
+
+// const pressKey = (e) => {
+//     e.preventDefault();
+//     if(e.key === 'Escape'){
+//         lightBoxModal.close();
+//         document.removeEventListener('keydown' , pressKey);
+//     }
+// };
+
+// galleryItemsSelect.addEventListener('keydown', pressKey);
